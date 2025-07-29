@@ -27,12 +27,12 @@ driver = webdriver.Chrome(service=service, options=options)
 
 driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
-ciudad = "tlaquepaque"
+ciudad = "zapopan"
 
-with open(f"InmueblesData/{ciudad}/links_casas_{ciudad}.txt", "r", encoding="utf-8") as f:
+with open(f"Data/{ciudad}/links_casas_{ciudad}.txt", "r", encoding="utf-8") as f:
     all_links = [line.strip() for line in f if line.strip()]
 
-# all_links = all_links[:]  # Solo procesa el primer link
+all_links = all_links[2690+581:]  # Solo procesa el primer link
 
 # def extraer_direccion(soup):
 #     h4_tags = soup.find_all("h4")
@@ -131,7 +131,7 @@ for i, link in enumerate(all_links):
 
 # Guardar en CSV
 df = pd.DataFrame(todos_los_datos)
-df.to_csv(f"InmueblesData/{ciudad}/propiedades_{ciudad}.csv", index=False, encoding="utf-8")
+df.to_csv(f"Data/{ciudad}/propiedades_{ciudad}7.csv", index=False, encoding="utf-8")
 
 driver.quit()
-print(f"✅ Extracción finalizada. Archivo guardado como 'propiedades_{ciudad}.csv'")
+print(f"✅ Extracción finalizada. Archivo guardado como 'propiedades_{ciudad}7.csv'")
